@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: Welcome!
     m_Metadata:
       m_Items: []
+  - m_Id: 130693844549632
+    m_Localized: Spring
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

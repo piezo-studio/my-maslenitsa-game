@@ -19,6 +19,10 @@ MonoBehaviour:
     m_Key: '#loca_is_alive'
     m_Metadata:
       m_Items: []
+  - m_Id: 130693844549632
+    m_Key: '#char_player_name'
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
