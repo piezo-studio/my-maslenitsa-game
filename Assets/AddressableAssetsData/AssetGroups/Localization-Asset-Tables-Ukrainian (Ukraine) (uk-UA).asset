@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Asset-Tables-Ukrainian (Ukraine) (uk-UA)
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Asset-Tables-Ukrainian (Ukraine) (uk-UA)
+  m_Data:
+    m_SerializedData: []
+  m_GUID: a93e5c5ce01e09c4da7b3517799be9c9
+  m_SerializeEntries:
+  - m_GUID: fb90edb46d5c7874e8047541f3ea3db0
+    m_Address: GameLocaAssets_uk-UA
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk-UA
+    - Preload
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 30b26db9286fdea438d19756f0195288, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4504ec684a8ece24a939366a7b8f1fb8, type: 2}
+    - {fileID: 11400000, guid: 33d72bacbdacdc044962ae8f16dba4e9, type: 2}
