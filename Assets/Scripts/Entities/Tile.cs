@@ -48,6 +48,8 @@ namespace Entities
 			if (Who() == ActorType.Player)
 				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("tile_bg2");
 
+			_anchor.actor = actor;
+			
 			return actor;
 		}
 

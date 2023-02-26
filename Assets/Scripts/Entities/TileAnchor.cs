@@ -1,4 +1,5 @@
 ﻿using System;
+using Entities.Actors;
 using UnityEngine;
 
 namespace Entities
@@ -7,6 +8,7 @@ namespace Entities
 	{
 		[SerializeField] public Vector2Int coordinates;
 		public Tile tile;
+		public Actor actor;
 
 		public void SaveTile(Tile newTile)
 		{

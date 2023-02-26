@@ -33,15 +33,22 @@ public class Play : MonoBehaviour
 	/// </summary>
 	[SerializeField] private Level _gameLevel;
 	
+	/*
 	/// <summary>
 	/// Список со всеми актёрами.
 	/// </summary>
 	private List<Actor> _actors;
+	*/
 
 	/// <summary>
 	/// Список якорей поля. По ним мы можем найти тайлы.
 	/// </summary>
 	private TileAnchor[,] _anchors;
+
+	/// <summary>
+	/// Координаты всех актёров.
+	/// </summary>
+	private Dictionary<Vector2Int, Actor> _actors;
 
 	private Player _player;
 	
@@ -54,6 +61,7 @@ public class Play : MonoBehaviour
 	{
 		// Если список не существует, создаём его.
 		_anchors ??= new TileAnchor[5, 5];
+		_actors ??= new Dictionary<Vector2Int, Actor>(25);
 
 		// Ищем все якори.
 		for (var x = 0; x < 5; x++)
@@ -136,12 +144,11 @@ public class Play : MonoBehaviour
 		Debug.Log($"Spawning a tile with actor {type}…");
 		var anchor = _anchors[coordinates.x, coordinates.y];
 		var tile = Instantiate(tilePrefab, Vector3.zero, Quaternion.identity, anchor.transform);
-
-		_actors ??= new List<Actor>();
+		
 		var actor = tile.OnSpawn(this, anchor, cfg.tilesConfig[(int)type]);
 		
 		anchor.SaveTile(tile);
-		_actors.Add(actor);
+		_actors.Add(coordinates, actor);
 
 		return actor;
 	}
@@ -157,17 +164,18 @@ public class Play : MonoBehaviour
 			switch (_player.mode)
 			{
 				case PlayerActionMode.Regular:
-					if (Math.Abs(Vector2Int.Distance(_player.Where(), tile.coordinates) - 1f) < 0.1)
-						PlayerAction(tile.coordinates);
-					break;
 				case PlayerActionMode.MeleeWeapon:
-
+					if (Calc.IntDistance(tile.coordinates, _player.Where()) == 1)
+						PlayerAction(_actors[tile.coordinates]);
 					break;
 				case PlayerActionMode.RangedWeapon:
-
+					
 					break;
 				case PlayerActionMode.Spell:
-
+					
+					break;
+				case PlayerActionMode.LongWeapon:
+					
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();

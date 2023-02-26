@@ -21,6 +21,7 @@ namespace Entities.Actors
 		Regular = 0,
 		MeleeWeapon = 1,
 		RangedWeapon = 2,
-		Spell = 3
+		Spell = 3,
+		LongWeapon
 	}
 }
