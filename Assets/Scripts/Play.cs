@@ -17,28 +17,21 @@ public class Play : MonoBehaviour
 	/// Ссылка на конфиг.
 	/// </summary>
 	[SerializeField] public Config cfg;
+
+	/// <summary>
+	/// Текущее состояние игры: ход игрока или скрипта.
+	/// </summary>
+	public PlayState gameState = PlayState.NpcTurn;
 	
 	/// <summary>
 	/// Генератор рандомных чисел.
 	/// </summary>
-	public Random Rnd = new Random();
-	
-	/// <summary>
-	/// Текущее состояние игры: ход игрока или скрипта.
-	/// </summary>
-	private PlayState _gameState = PlayState.PlayerMove;
+	public readonly Random Rnd = new Random();
 
 	/// <summary>
 	/// Текущий уровнь (сложности).
 	/// </summary>
 	[SerializeField] private Level _gameLevel;
-	
-	/*
-	/// <summary>
-	/// Список со всеми актёрами.
-	/// </summary>
-	private List<Actor> _actors;
-	*/
 
 	/// <summary>
 	/// Список якорей поля. По ним мы можем найти тайлы.
@@ -51,7 +44,7 @@ public class Play : MonoBehaviour
 	private Dictionary<Vector2Int, Actor> _actors;
 
 	private Player _player;
-	
+
 	/// <summary>
 	/// Количество валюты (янтарей) у игрока.
 	/// </summary>
@@ -86,6 +79,13 @@ public class Play : MonoBehaviour
 				GenerateTile(anchor.coordinates);
 			}
 		}
+
+		gameState = PlayState.PlayerTurn;
+	}
+
+	private void OnDestroy()
+	{
+		gameState = PlayState.GameEnd;
 	}
 
 	private void GenerateTile(Vector2Int coordinates)
@@ -121,13 +121,15 @@ public class Play : MonoBehaviour
 					fieldActorWeights[i] = 1f;
 				cfgActorWeights[i] = cfgActorWeights[i] * cfgActorWeights[i] / fieldActorWeights[i] + maxWeight;
 				maxWeight = cfgActorWeights[i];
-				Debug.Log($"Weight for {(ActorType)i} on {coordinates} is {cfgActorWeights[i]} (fieldActorWeights: {fieldActorWeights[i]}; maxWeight: {maxWeight})");
+				//Debug.Log(
+				//$"Weight for {(ActorType)i} on {coordinates} is {cfgActorWeights[i]}
+				//(fieldActorWeights: {fieldActorWeights[i]}; maxWeight: {maxWeight})");
 			}
 
 			// Генерим случайное число (NextDouble() создаёт от 0f до 1f)
 			var randomNum = Rnd.NextDouble() * maxWeight;
 
-			Debug.Log($"Rolled {randomNum}");
+			//Debug.Log($"Rolled {randomNum}");
 			
 			// Выбираем тип объекта
 			for (var i = 0; i < cfgActorWeights.Count; i++)
@@ -141,7 +143,7 @@ public class Play : MonoBehaviour
 
 	private Actor SpawnTile(Vector2Int coordinates, ActorType type)
 	{
-		Debug.Log($"Spawning a tile with actor {type}…");
+		//Debug.Log($"Spawning a tile with actor {type}…");
 		var anchor = _anchors[coordinates.x, coordinates.y];
 		var tile = Instantiate(tilePrefab, Vector3.zero, Quaternion.identity, anchor.transform);
 		
@@ -155,43 +157,102 @@ public class Play : MonoBehaviour
 
 	public void OnTileClicked(Tile tile)
 	{
-		if (_gameState != PlayState.PlayerMove)
+		if (gameState != PlayState.PlayerTurn)
 			return;
+		
 		if (tile.actor is Player)
+		{
 			// TODO: What happens when we tap the player?
 			Debug.Log("Yep, that's you, good job.");
+		}
 		else
 			switch (_player.mode)
 			{
 				case PlayerActionMode.Regular:
+					if (tile.Where().IntDistance(_player.Where()) == 1)
+						PlayerMove(_actors[tile.Where()]);
+					// TODO: What happens when we click a non-actionable tile?
+					break;
 				case PlayerActionMode.MeleeWeapon:
-					if (Calc.IntDistance(tile.coordinates, _player.Where()) == 1)
-						PlayerAction(_actors[tile.coordinates]);
+					if (tile.Where().IntDistance(_player.Where()) == 1)
+						PlayerDealDamage(_actors[tile.Where()]);
+					// TODO: What happens when we click a non-actionable tile?
 					break;
 				case PlayerActionMode.RangedWeapon:
-					
+					if (tile.Where().IntDistanceDiagonal(_player.Where()) == 1)
+						PlayerDealDamage(_actors[tile.Where()]);
+					// TODO: What happens when we click a non-actionable tile?
 					break;
 				case PlayerActionMode.Spell:
-					
+					if (tile.Where().x == _player.Where().x || tile.Where().y == _player.Where().y)
+						PlayerDealDamageLine(_actors[tile.Where()]);
+					// TODO: What happens when we click a non-actionable tile?
 					break;
 				case PlayerActionMode.LongWeapon:
-					
+					if (tile.Where().IntDistance(_player.Where()) == 1)
+						PlayerMove(_actors[tile.Where()]);
+					else
+					{
+						if (tile.Where().IntDistanceDiagonal(_player.Where()) != 1
+						    && tile.Where().IntDistance(_player.Where()) == 2)
+							PlayerDealDamage(_actors[tile.Where()]);
+						// TODO: What happens when we click a non-actionable tile?
+					}
 					break;
 				default:
-					throw new ArgumentOutOfRangeException();
+					throw new IndexOutOfRangeException(
+						$"Attempted to move using unrecognized player mode {_player.mode}");
 			}
 	}
 
-	private void PlayerAction(Actor target)
+	private void PlayerDealDamageLine(Actor actor)
 	{
 		throw new NotImplementedException();
+	}
+
+	private void PlayerDealDamage(Actor actor)
+	{
+		throw new NotImplementedException();
+	}
+
+	private void PlayerMove(Actor target)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void MoveTile(Vector2Int source, Vector2Int target)
+	{
+		if (source.IntDistance(target) != 1)
+			throw new ArgumentOutOfRangeException($"Attempted to move tile @ {target} to {source}");
+		if (_actors.ContainsKey(target))
+			throw new ArgumentException(
+				$"Attempted to move tile @ {target} to {source}, where there is {_actors[target]}");
+		
+	}
+
+	public void OnActorDeath(Vector2Int where)
+	{
+		if (gameState == PlayState.GameEnd)
+			return;
+		// Забываем актёра.
+		_actors.Remove(where);
+		
+		// Если игрок сейчас в движении, ничего не спавним
+		if (gameState == PlayState.PlayerMove)
+			return;
+		
+		// Спавним на пустую клетку пустого актёра
+		SpawnTile(where, ActorType.Empty);
 	}
 }
 
 public enum PlayState
 {
+	PlayerTurn,
 	PlayerMove,
-	NpcMove
+	NpcTurn,
+	NpcMove,
+	GameEnd
 }
 
 public enum Level

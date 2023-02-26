@@ -20,12 +20,20 @@ namespace Entities
 		public void ForgetTile()
 		{
 			tile = null;
+			gameObject.DestroyChildren();
 		}
 
-		public void SwapTile(Tile newTile)
+		public void SwapTile(TileAnchor target)
 		{
-			ForgetTile();
-			SaveTile(newTile);
+			var newTile = target.tile;
+			
+			// Отдаём свой тайл
+			tile.transform.parent = target.gameObject.transform;
+			target.tile = tile;
+			
+			// Забираем чужой тайл
+			newTile.transform.parent = this.gameObject.transform;
+			this.tile = newTile;
 		}
 	}
 }

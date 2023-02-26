@@ -10,36 +10,71 @@ namespace Entities.Actors
 		protected ActorType Loot;
 		protected int LootMod; // loot ± loot_delta
 		protected ActorType Type;
+		/// <summary>
+		/// Макс. ХП.
+		/// </summary>
+		protected int ValueMax;
 		public int value; // hp ± hp_delta
 		protected TextMeshProUGUI ValueLabel;
 		
 		protected void Awake()
 		{
 			_tile = transform.parent.GetComponent<Tile>();
-			ValueLabel = GameObject.Find("value").GetComponent<TextMeshProUGUI>();
+			ValueLabel = gameObject.FindChildByName("value").GetComponent<TextMeshProUGUI>();
 			OnSpawn();
 		}
 
+		protected void OnDestroy()
+		{
+			_tile.controller.OnActorDeath(Where());
+			gameObject.DestroyChildren();
+		}
+
+		/// <summary>
+		/// Метод, вызываемый, когда тайл появляется. Каждый тип Актёра по-своему его обрабатывает.
+		/// </summary>
 		protected abstract void OnSpawn();
+
+		/// <summary>
+		/// Скрипт, производящий действия актёра в его ход.
+		/// </summary>
+		protected void OnNPCTurn()
+		{
+			
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected void OnDamageTaken(bool isFatal)
+		{
+			if (isFatal)
+				_tile.Suicide();
+			else
+			{
+				
+			}
+		}
 
 		public int ChangeValue(int newValue)
 		{
+			ValueLabel.text = newValue.ToString();
+			if (value < newValue && _tile.controller.gameState == PlayState.PlayerTurn)
+				OnDamageTaken(newValue <= 0);
 			value = newValue;
-			ValueLabel.text = value.ToString();
+
+			Debug.Log($"Set value to {value}");
 			return value;
 		}
 		
 		public int ChangeValue(int newValue, int valueDelta, Random rnd)
 		{
-			value = newValue + rnd.Next(-valueDelta, valueDelta);
-			ValueLabel.text = value.ToString();
-			return value;
+			if (valueDelta != 0)
+				newValue += rnd.Next(-valueDelta, valueDelta);
+			return ChangeValue(newValue);
 		}
 
-		public Vector2Int Where()
-		{
-			return _tile.coordinates;
-		}
+		public Vector2Int Where() => _tile.Where();
 
 		public ActorType Who()
 		{

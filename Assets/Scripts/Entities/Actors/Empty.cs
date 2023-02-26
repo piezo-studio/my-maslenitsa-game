@@ -7,5 +7,9 @@
 			Type = ActorType.Empty;
 			ValueLabel.gameObject.SetActive(false);
 		}
+
+		protected new void OnDamageTaken(bool isFatal)
+		{
+		}
 	}
 }

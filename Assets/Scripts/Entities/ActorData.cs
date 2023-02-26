@@ -1,7 +1,6 @@
 ﻿using System;
 using Entities.Actors;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Entities
 {
