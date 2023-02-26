@@ -13,6 +13,11 @@ scopes = {
 	"last_search.DD5CDDE4" = ""
 	"OpenInspectorPreview.DD5CDDE4" = "0"
 	"currentGroup.DD5CDDE4" = "scene"
+	"picker_window_position_offset.45F317DD" = "-272;300;320;550"
+	"picker_search_text.45F317DD" = "st: spik"
+	"last_search.45F317DD" = "st: spik"
+	"OpenInspectorPreview.45F317DD" = "0"
+	"currentGroup.45F317DD" = "all"
 }
 providers = {
 	at = {
@@ -69,11 +74,15 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"st: "
+	"#actor_empty_name"
 ]
 searchItemFavorites = [
+	"bd3f775f-4ca3-4062-81f9-5fed319cbfd5"
 ]
 savedSearchesSortOrder = 0
 showSavedSearchPanel = false
+hideTabs = false
 expandedQueries = [
 ]
 queryBuilder = false

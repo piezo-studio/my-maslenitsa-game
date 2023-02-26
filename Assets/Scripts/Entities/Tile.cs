@@ -1,46 +1,58 @@
-﻿using System;
-using Entities.Actors;
+﻿using Entities.Actors;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace Entities
 {
 	public class Tile : MonoBehaviour, IPointerClickHandler
 	{
 		/// <summary>
-		/// Ссылка на скрипт игры.
+		/// Координаты тайла на поле.
 		/// </summary>
-		private Play _controller;
+		public Vector2Int coordinates;
+
 		/// <summary>
 		/// Ссылка на якорь поля.
 		/// </summary>
 		private TileAnchor _anchor;
+
 		/// <summary>
-		/// Координаты тайла на поле.
+		/// Ссылка на скрипт игры.
 		/// </summary>
-		public Vector2Int coordinates;
+		private Play _controller;
+
 		/// <summary>
 		/// Ссылка на существо на тайле.
 		/// </summary>
-		public IActor Actor;
-		/// <summary>
-		/// Тип актёра на этом тайле.
-		/// </summary>
-		public ActorType ActorType;
+		public Actor actor;
 
-		public IActor OnSpawn(Play script, TileAnchor anchor)
+		public void OnPointerClick(PointerEventData eventData)
+		{
+			_controller.OnTileClicked(this);
+		}
+
+		public Actor OnSpawn(Play script, TileAnchor anchor, ActorData actorData)
 		{
 			_controller = script;
 			_anchor = anchor;
 			coordinates = _anchor.coordinates;
-			Actor = GetComponentInChildren<IActor>();
-			ActorType = Actor.GetActorType();
-			return Actor;
+			
+			// Спавним актёра
+			actor = Instantiate(actorData.prefab, Vector3.zero, Quaternion.identity, transform).GetComponent<Actor>();
+			actor.ChangeValue(actorData.hp, actorData.hpDelta, _controller.Rnd);
+
+			Debug.Log($"Tile spawned @ {coordinates} with {Who()}.");
+
+			transform.localPosition = Vector3.zero;
+			
+			if (Who() == ActorType.Player)
+				GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("tile_bg2");
+
+			return actor;
 		}
 
-		public Vector2Int GetGridPosition() => coordinates;
+		public ActorType Who() => actor.Who();
 
-		public void OnPointerClick(PointerEventData eventData) => _controller.OnTileClicked(this);
+		public Config GetConfig() => _controller.cfg;
 	}
 }

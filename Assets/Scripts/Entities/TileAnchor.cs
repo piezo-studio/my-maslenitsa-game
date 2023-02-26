@@ -1,17 +1,29 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace Entities
 {
 	public class TileAnchor : MonoBehaviour
 	{
 		[SerializeField] public Vector2Int coordinates;
+		public Tile tile;
 
-		private void AttachedSpawnedTile(Tile tile)
+		public void SaveTile(Tile newTile)
 		{
-			
+			if (tile != null)
+				throw new IndexOutOfRangeException($@"Attempted to tie {newTile} to coordinates {coordinates}");
+			tile = newTile;
+		}
+
+		public void ForgetTile()
+		{
+			tile = null;
+		}
+
+		public void SwapTile(Tile newTile)
+		{
+			ForgetTile();
+			SaveTile(newTile);
 		}
 	}
 }

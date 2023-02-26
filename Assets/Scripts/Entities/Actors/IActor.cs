@@ -4,7 +4,7 @@ namespace Entities.Actors
 {
 	public interface IActor
 	{
-		public Vector2Int GetGridPosition();
-		public ActorType GetActorType();
+		public Vector2Int Where();
+		public ActorType Who();
 	}
 }

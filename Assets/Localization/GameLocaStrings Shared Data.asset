@@ -15,12 +15,108 @@ MonoBehaviour:
   m_TableCollectionName: GameLocaStrings
   m_TableCollectionNameGuidString: d0ef1b40b9723054982c66929216b7a1
   m_Entries:
-  - m_Id: 3153846976512
+  - m_Id: 581641570205696
     m_Key: '#loca_is_alive'
     m_Metadata:
       m_Items: []
-  - m_Id: 130693844549632
-    m_Key: '#char_player_name'
+  - m_Id: 581641696034816
+    m_Key: '#actor_player_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034817
+    m_Key: '#actor_empty_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034818
+    m_Key: '#actor_snow_wolf_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034819
+    m_Key: '#actor_amber_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034820
+    m_Key: '#actor_boss1_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034821
+    m_Key: '#actor_boss2_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034822
+    m_Key: '#actor_boss3_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034823
+    m_Key: '#actor_boss4_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034824
+    m_Key: '#actor_sword_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034825
+    m_Key: '#actor_drekavak_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034826
+    m_Key: '#actor_mara_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034827
+    m_Key: '#actor_mavka_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034828
+    m_Key: '#actor_spell_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034829
+    m_Key: '#actor_skeleton_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034830
+    m_Key: '#actor_white_wolf_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034831
+    m_Key: '#actor_small_heal_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034832
+    m_Key: '#actor_medium_heal_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034833
+    m_Key: '#actor_big_heal_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034834
+    m_Key: '#actor_sp_full_heal_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034835
+    m_Key: '#actor_e_heart_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034836
+    m_Key: '#actor_mush_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034837
+    m_Key: '#actor_blizzard_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034838
+    m_Key: '#actor_spear_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034839
+    m_Key: '#actor_bow_name'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034840
+    m_Key: '#actor_spike_name'
     m_Metadata:
       m_Items: []
   m_Metadata:

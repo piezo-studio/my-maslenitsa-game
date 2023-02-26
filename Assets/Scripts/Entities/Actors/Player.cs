@@ -1,29 +1,26 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Entities.Actors
 {
-	public class Player : MonoBehaviour, IActor
+	public class Player : Actor
 	{
-		public Tile ownedTile;
-		private readonly ActorType _actorType;
 		public PlayerActionMode mode;
+		public int value_str;
 
-		/// <summary>
-		/// Определяем с самого начала дескрипторы нашего 
-		/// </summary>
-		public Player()
+		protected override void OnSpawn()
 		{
-			_actorType = ActorType.Player;
+			Type = ActorType.Player;
 			mode = PlayerActionMode.Regular;
+			value_str = 0;
 		}
-
-		void Awake()
-		{
-			ownedTile = transform.parent.GetComponent<Tile>();
-		}
-		
-		public Vector2Int GetGridPosition() => ownedTile.GetGridPosition();
-		public ActorType GetActorType() => _actorType;
+	}
+	
+	public enum PlayerActionMode
+	{
+		Regular = 0,
+		MeleeWeapon = 1,
+		RangedWeapon = 2,
+		Spell = 3
 	}
 }

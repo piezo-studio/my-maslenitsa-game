@@ -18,12 +18,108 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 3153846976512
+  - m_Id: 581641696034822
+    m_Localized: Likho
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034821
+    m_Localized: Syrin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034820
+    m_Localized: Bogatyr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034819
+    m_Localized: Amber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034818
+    m_Localized: Wolf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034817
+    m_Localized: Nothing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034816
+    m_Localized: Spring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641570205696
     m_Localized: Welcome!
     m_Metadata:
       m_Items: []
-  - m_Id: 130693844549632
-    m_Localized: Spring
+  - m_Id: 581641696034823
+    m_Localized: Zima
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034824
+    m_Localized: Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034825
+    m_Localized: Drekavak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034826
+    m_Localized: Mara
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034827
+    m_Localized: Mavka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034828
+    m_Localized: Cantrip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034829
+    m_Localized: Skeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034830
+    m_Localized: White Wolf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034831
+    m_Localized: Lingonberry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034832
+    m_Localized: Rowan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034833
+    m_Localized: Bread & Salt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034834
+    m_Localized: Dead water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034835
+    m_Localized: Life water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034836
+    m_Localized: Grebe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034837
+    m_Localized: Blizzard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034838
+    m_Localized: Spear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034839
+    m_Localized: Bow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581641696034840
+    m_Localized: Spikes
     m_Metadata:
       m_Items: []
   references:
