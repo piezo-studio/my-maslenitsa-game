@@ -1,6 +1,6 @@
 ﻿namespace Entities.Actors.Enemies
 {
-	public class Mara : Actor
+	public class Mara : Wolf
 	{
 		protected override void OnSpawn()
 		{

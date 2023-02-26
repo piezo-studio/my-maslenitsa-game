@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -29,5 +30,32 @@ public static class Ext
 		}
 
 		return null;
+	}
+
+	public static List<Vector2Int> GetRelativeLine(Vector2Int origin, Vector2Int direction, Vector2Int min, Vector2Int max)
+	{
+		var result = new List<Vector2Int>();
+		if (direction.x == 1 && direction.y == 0)
+		{
+			for (var i = origin.x + 1; i <= max.x; i++)
+				result.Add(new Vector2Int(i, origin.y));
+		}
+		if (direction.x == 0 && direction.y == 1)
+		{
+			for (var i = origin.y + 1; i <= max.y; i++)
+				result.Add(new Vector2Int(origin.x, i));
+		}
+		if (direction.x == -1 && direction.y == 0)
+		{
+			for (var i = origin.x - 1; i >= min.x; i--)
+				result.Add(new Vector2Int(i, origin.y));
+		}
+		if (direction.x == 0 && direction.y == -1)
+		{
+			for (var i = origin.y - 1; i >= min.y; i--)
+				result.Add(new Vector2Int(origin.x, i));
+		}
+
+		return result;
 	}
 }

@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.Bow;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player equips the Bow
+		}
 	}
 }

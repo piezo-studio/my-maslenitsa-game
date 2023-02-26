@@ -30,10 +30,19 @@ namespace Entities
 			// Отдаём свой тайл
 			tile.transform.parent = target.gameObject.transform;
 			target.tile = tile;
+			target.tile.OnSwapped(target);
 			
 			// Забираем чужой тайл
-			newTile.transform.parent = this.gameObject.transform;
-			this.tile = newTile;
+			if (newTile is not null)
+			{
+				newTile.transform.parent = this.gameObject.transform;
+				this.tile = newTile;
+				this.tile.OnSwapped(this);
+			}
+			else
+			{
+				tile = null;
+			}
 		}
 	}
 }

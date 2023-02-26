@@ -11,5 +11,9 @@
 		protected new void OnDamageTaken(bool isFatal)
 		{
 		}
+
+		public override void OnInteraction(Actor interactor)
+		{
+		}
 	}
 }

@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.Spear;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player equips the Spear
+		}
 	}
 }

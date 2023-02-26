@@ -43,12 +43,10 @@ public class Play : MonoBehaviour
 	/// </summary>
 	private Dictionary<Vector2Int, Actor> _actors;
 
-	private Player _player;
-
 	/// <summary>
-	/// Количество валюты (янтарей) у игрока.
+	/// Ссылка на игрока.
 	/// </summary>
-	private int _consumables = 0;
+	private Player _player;
 
 	private void Start()
 	{
@@ -92,7 +90,7 @@ public class Play : MonoBehaviour
 	{
 		if (_gameLevel == 0)
 		{
-			//TODO: Tutorial.
+			// TODO: Tutorial.
 		}
 		else
 		{
@@ -205,19 +203,42 @@ public class Play : MonoBehaviour
 			}
 	}
 
-	private void PlayerDealDamageLine(Actor actor)
+	private void PlayerDealDamageLine(Actor target)
 	{
 		throw new NotImplementedException();
 	}
 
-	private void PlayerDealDamage(Actor actor)
+	private void PlayerDealDamage(Actor target)
 	{
 		throw new NotImplementedException();
 	}
 
 	private void PlayerMove(Actor target)
 	{
-		throw new NotImplementedException();
+		gameState = PlayState.PlayerMove;
+		
+		// Реакция тайла на игрока.
+		target.OnInteraction(_player);
+
+		// Убиваем цель, запоминаем где
+		var moveFrom = _player.Where();
+		var moveTo = target.Where();
+		target.SetValue(0);
+		
+		// Двигаем игрока
+		MoveTile(_player.Where(), moveTo);
+		
+		// Двигаем остальные тайлы позади него
+		var direction = moveFrom - moveTo;
+		var orderedTiles = Ext.GetRelativeLine(moveTo, direction, new Vector2Int(0, 0), new Vector2Int(4, 4));
+
+		for (var i = 0; i < orderedTiles.Count() - 1; i++)
+			MoveTile(orderedTiles[i] + direction, orderedTiles[i]);
+
+		// Спавним новый тайл в конце
+		GenerateTile(orderedTiles.Last());
+		
+		gameState = PlayState.PlayerTurn;
 	}
 
 	public void MoveTile(Vector2Int source, Vector2Int target)
@@ -227,13 +248,21 @@ public class Play : MonoBehaviour
 		if (_actors.ContainsKey(target))
 			throw new ArgumentException(
 				$"Attempted to move tile @ {target} to {source}, where there is {_actors[target]}");
+
+		var sourceAnchor = _anchors[source.x, source.y];
+		var targetAnchor = _anchors[target.x, target.y];
 		
+		sourceAnchor.SwapTile(targetAnchor);
+
+		_actors.Remove(source);
+		_actors.Add(target, targetAnchor.actor);
 	}
 
 	public void OnActorDeath(Vector2Int where)
 	{
 		if (gameState == PlayState.GameEnd)
 			return;
+		
 		// Забываем актёра.
 		_actors.Remove(where);
 		

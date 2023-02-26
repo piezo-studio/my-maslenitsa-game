@@ -26,7 +26,6 @@ namespace Entities.Actors
 
 		protected void OnDestroy()
 		{
-			_tile.controller.OnActorDeath(Where());
 			gameObject.DestroyChildren();
 		}
 
@@ -38,28 +37,38 @@ namespace Entities.Actors
 		/// <summary>
 		/// Скрипт, производящий действия актёра в его ход.
 		/// </summary>
-		protected void OnNPCTurn()
+		public void OnNPCTurn()
 		{
 			
 		}
 
 		/// <summary>
-		/// 
+		/// Что происходит, если ударить (или убить) актёра. 
 		/// </summary>
 		protected void OnDamageTaken(bool isFatal)
 		{
 			if (isFatal)
+			{
+				_tile.controller.OnActorDeath(Where());
 				_tile.Suicide();
+			}
 			else
 			{
 				
 			}
 		}
 
-		public int ChangeValue(int newValue)
+		/// <summary>
+		/// Что происходит, если другой актёр взаимодействует с этим актёром.
+		/// По умолчанию, просто даёт игроку зайти на своё место.
+		/// </summary>
+		/// <param name="interactor">Инициатор взаимодействия</param>
+		public abstract void OnInteraction(Actor interactor);
+
+		public int SetValue(int newValue)
 		{
 			ValueLabel.text = newValue.ToString();
-			if (value < newValue && _tile.controller.gameState == PlayState.PlayerTurn)
+			if (value > newValue && _tile.controller.gameState == PlayState.PlayerMove)
 				OnDamageTaken(newValue <= 0);
 			value = newValue;
 
@@ -67,19 +76,16 @@ namespace Entities.Actors
 			return value;
 		}
 		
-		public int ChangeValue(int newValue, int valueDelta, Random rnd)
+		public int SetValue(int newValue, int valueDelta, Random rnd)
 		{
 			if (valueDelta != 0)
 				newValue += rnd.Next(-valueDelta, valueDelta);
-			return ChangeValue(newValue);
+			return SetValue(newValue);
 		}
 
 		public Vector2Int Where() => _tile.Where();
 
-		public ActorType Who()
-		{
-			return Type;
-		}
+		public ActorType Who() => Type;
 	}
 	
 	public enum ActorType

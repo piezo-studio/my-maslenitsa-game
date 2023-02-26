@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.SmallHeal;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player is healed
+		}
 	}
 }

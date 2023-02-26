@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.EHeart;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player equips the Heart
+		}
 	}
 }

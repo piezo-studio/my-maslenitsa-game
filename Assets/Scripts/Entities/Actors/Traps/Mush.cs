@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.Mush;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player takes damage
+		}
 	}
 }

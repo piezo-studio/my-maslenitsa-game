@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.Spell;
 		}
+
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player equips the Spell
+		}
 	}
 }

@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.SpFullHeal;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player is healed fully
+		}
 	}
 }

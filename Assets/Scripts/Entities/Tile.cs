@@ -35,7 +35,7 @@ namespace Entities
 			// Спавним актёра
 			Debug.Log($"Soawning Actor {actorData.type} with value = {actorData.hp}");
 			actor = Instantiate(actorData.prefab, Vector3.zero, Quaternion.identity, transform).GetComponent<Actor>();
-			actor.ChangeValue(actorData.hp, actorData.hpDelta, controller.Rnd);
+			actor.SetValue(actorData.hp, actorData.hpDelta, controller.Rnd);
 
 			Debug.Log($"Tile spawned @ {Where()} with {Who()}.");
 
@@ -54,9 +54,13 @@ namespace Entities
 			gameObject.DestroyChildren();
 		}
 
-		public void OnSwapped()
+		public void OnSwapped(TileAnchor newAnchor)
 		{
+			_anchor = newAnchor;
 			
+			// Здесь мы двигаемся на новое место
+			// TODO: Animation!!
+			transform.localPosition = Vector3.zero;
 		}
 
 		public void Suicide()

@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.Wolf;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player takes damage
+		}
 	}
 }

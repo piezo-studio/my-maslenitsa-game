@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.Boss2;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player takes damage
+		}
 	}
 }

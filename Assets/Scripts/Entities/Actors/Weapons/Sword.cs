@@ -6,5 +6,10 @@
 		{
 			Type = ActorType.Sword;
 		}
+		
+		public override void OnInteraction(Actor interactor)
+		{
+			// Player equips the Sword
+		}
 	}
 }
