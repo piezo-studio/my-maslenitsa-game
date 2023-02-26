@@ -23,11 +23,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034821
-    m_Localized: Syrin
+    m_Localized: Sirin
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034820
-    m_Localized: Bogatyr
+    m_Localized: Temnogor
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034819
@@ -35,11 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034818
-    m_Localized: Wolf
+    m_Localized: Snow Wolf
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034817
-    m_Localized: Nothing
+    m_Localized: ' '
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034816
@@ -71,7 +71,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034828
-    m_Localized: Cantrip
+    m_Localized: Evocation
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034829
@@ -83,27 +83,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034831
-    m_Localized: Lingonberry
+    m_Localized: Cowberry
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034832
-    m_Localized: Rowan
+    m_Localized: Rowanberry
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034833
-    m_Localized: Bread & Salt
+    m_Localized: Bread and Salt
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034834
-    m_Localized: Dead water
+    m_Localized: Dead Water
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034835
-    m_Localized: Life water
+    m_Localized: Life Water
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034836
-    m_Localized: Grebe
+    m_Localized: False Mushroom
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034837
@@ -119,7 +119,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 581641696034840
-    m_Localized: Spikes
+    m_Localized: Stakes
     m_Metadata:
       m_Items: []
   references:

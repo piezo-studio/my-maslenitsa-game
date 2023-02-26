@@ -158,7 +158,7 @@ public class Play : MonoBehaviour
 			{
 				case PlayerActionMode.Regular:
 					if (Math.Abs(Vector2Int.Distance(_player.Where(), tile.coordinates) - 1f) < 0.1)
-						MovePlayer();
+						PlayerAction(tile.coordinates);
 					break;
 				case PlayerActionMode.MeleeWeapon:
 
@@ -174,7 +174,7 @@ public class Play : MonoBehaviour
 			}
 	}
 
-	private void MovePlayer()
+	private void PlayerAction(Actor target)
 	{
 		throw new NotImplementedException();
 	}
