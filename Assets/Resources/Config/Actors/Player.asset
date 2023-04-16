@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5dc38abea64f288e6f1e06d85253a7, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  type: 0
+  sprite: {fileID: 21300000, guid: 32f71da559cb9f84eb3c77d46d6065c3, type: 3}
+  localizationKey: '#actor_player_name'
+  hp: 50
+  hpDelta: 0
+  onSpawn:
+  - {fileID: 0}
+  onPlayerInteraction:
+  - {fileID: 0}
+  onTurn:
+  - {fileID: 0}
+  onDamageTaken:
+  - {fileID: 0}
+  onDeath:
+  - {fileID: 0}
